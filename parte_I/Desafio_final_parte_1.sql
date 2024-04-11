@@ -17,7 +17,9 @@ CREATE TABLE tags (
 CREATE TABLE relacion_peliculas_tags (
     id INT PRIMARY KEY AUTO_INCREMENT,
     pelicula_id INT,
-    tag_id INT
+    tag_id INT,
+    FOREIGN KEY (pelicula_id) REFERENCES peliculas(id),
+    FOREIGN KEY (tag_id) REFERENCES tags(id)
 );
 
 -- Insertamos datos en las tablas:
@@ -42,13 +44,18 @@ INSERT INTO relacion_peliculas_tags (pelicula_id, tag_id) VALUES
     (2, 4),
     (2, 5);
 
+INSERT INTO relacion_peliculas_tags (pelicula_id) VALUES
+    (3),
+    (4),
+    (5);
+
 -- Consultas de datos:
-SELECT COUNT(id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 1;
+SELECT pelicula_id, COUNT(tag_id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 1;
 
-SELECT COUNT(id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 2;
+SELECT pelicula_id, COUNT(tag_id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 2;
 
-SELECT COUNT(id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 3;
+SELECT pelicula_id, COUNT(tag_id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 3;
 
-SELECT COUNT(id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 4;
+SELECT pelicula_id, COUNT(tag_id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 4;
 
-SELECT COUNT(id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 5;
+SELECT pelicula_id, COUNT(tag_id) AS 'Cantidad de tags' FROM relacion_peliculas_tags WHERE pelicula_id = 5;
